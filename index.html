@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>IEEE Student Branch ISTTS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- header -->
+  <header id="site-header" class="site-header">
+    <div class="header-inner">
+
+      <div class="brand">
+        <div class="logo-frame" id="logoFrame">
+          <img
+            id="brandLogoImg"
+            class="brand-logo-img"
+            src="assets/logo-ieee.png"
+            alt="Logo IEEE Student Branch ISTTS"
+          >
+        </div>
+        <span class="brand-name" id="brandName">IEEE Student Branch ISTTS</span>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="page-main">
+    <section class="hero-section" id="heroSection">
+
+      <div class="hero-icons-row" id="heroIconsRow">
+        <div class="icon-badge" id="iconWifi">
+          <img class="icon-img" src="assets/icon-wifi.svg" alt="Ikon wifi">
+        </div>
+        <div class="icon-badge" id="iconChip">
+          <img class="icon-img" src="assets/icon-chip.svg" alt="Ikon chip">
+        </div>
+        <div class="icon-badge icon-badge-large" id="iconRobot">
+          <img class="icon-img" src="assets/icon-robot.svg" alt="Ikon robot">
+        </div>
+        <div class="icon-badge" id="iconLink">
+          <img class="icon-img" src="assets/icon-link.svg" alt="Ikon tautan">
+        </div>
+        <div class="icon-badge" id="iconSpark">
+          <img class="icon-img" src="assets/icon-spark.svg" alt="Ikon spark">
+        </div>
+      </div>
+
+      <h1 class="hero-title" id="heroTitle">Pengumuman Open Recruitment IEEE 2026</h1>
+      <p class="hero-subtitle" id="heroSubtitle">
+        Masukkan NRP Anda untuk melihat detail dari Open Recruitment IEEE 2026.
+      </p>
+
+    </section>
+
+    <section class="cards-section" id="cardsSection">
+      <div class="cards-wrapper">
+
+        <!-- left box -->
+        <div class="card card-check-status" id="cardCheckStatus">
+
+          <div class="card-header">
+            <div class="card-header-icon card-header-icon-blue" id="checkStatusIcon">
+              <img class="card-header-icon-img" src="assets/icon-id-card.svg" alt="Ikon kartu identitas">
+            </div>
+            <h2 class="card-title">Cek Status Interview</h2>
+          </div>
+
+          <form class="check-status-form" id="checkStatusForm" novalidate>
+            <label class="form-label" for="nrpInput">NRP</label>
+            <input
+              type="text"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              id="nrpInput"
+              name="nrp"
+              class="nrp-input"
+              placeholder="Masukkan NRP Anda"
+              autocomplete="off"
+              maxlength="20"
+            >
+            <p class="form-hint" id="nrpHint">Hanya angka (0-9), tanpa spasi atau huruf.</p>
+            <p class="form-error" id="nrpError" hidden></p>
+
+            <button type="submit" class="btn-check" id="checkAnnouncementBtn">
+              Cek Pengumuman
+            </button>
+          </form>
+
+        </div>
+
+        <!-- right box -->
+        <div class="card card-result" id="cardResult">
+
+          <div class="card-header">
+            <div class="card-header-icon card-header-icon-teal" id="resultIcon">
+              <img class="card-header-icon-img" src="assets/icon-megaphone.svg" alt="Ikon pengumuman">
+            </div>
+            <h2 class="card-title">Hasil Pengumuman</h2>
+          </div>
+
+          <div class="result-box" id="resultBox">
+
+            <!-- tampilan awal -->
+            <div class="result-state result-state-empty" id="resultStateEmpty">
+              <div class="result-empty-icon">
+                <img class="result-empty-icon-img" src="assets/icon-search.svg" alt="Ikon pencarian">
+              </div>
+              <p class="result-empty-title">Belum ada hasil ditampilkan</p>
+              <p class="result-empty-desc">
+                Masukkan NRP pada form di samping lalu tekan "Cek Pengumuman" untuk melihat informasi interview Anda.
+              </p>
+            </div>
+
+            <!-- loading bar -->
+            <div class="result-state result-state-loading" id="resultStateLoading" hidden>
+              <div class="loading-spinner" id="loadingSpinner"></div>
+              <p class="result-loading-text">Sedang mencari data Anda...</p>
+            </div>
+
+            <!-- nrp tidak ketemu -->
+            <div class="result-state result-state-notfound" id="resultStateNotFound" hidden>
+              <div class="result-empty-icon result-empty-icon-warning">
+                <img class="result-empty-icon-img" src="assets/icon-warning.svg" alt="Ikon peringatan">
+              </div>
+              <p class="result-empty-title">NRP tidak ditemukan</p>
+              <p class="result-empty-desc" id="notFoundMessage">
+                Pastikan NRP yang Anda masukkan sudah benar, atau hubungi panitia melalui kontak di bawah.
+              </p>
+            </div>
+
+            <!-- lolos -->
+            <div class="result-state result-outcome result-outcome-lolos" id="resultStateLolos" hidden>
+
+              <span class="outcome-badge outcome-badge-success">
+                <svg class="outcome-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                <span>LOLOS</span>
+              </span>
+
+              <h3 class="outcome-heading">Selamat, kamu lolos! 🎉</h3>
+              <dl class="outcome-info-list">
+                <div class="outcome-info-row">
+                  <dt>NRP</dt>
+                  <dd id="lolosNrp"></dd>
+                </div>
+                <div class="outcome-info-row">
+                  <dt>Divisi</dt>
+                  <dd id="lolosDivisi"></dd>
+                </div>
+              </dl>
+
+              <hr class="outcome-divider">
+
+              <div class="outcome-steps-list">
+                <div class="outcome-step-item">
+                  <div class="outcome-step-icon outcome-step-icon-success">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+                  </div>
+                  <div class="outcome-step-text">
+                    <p class="outcome-step-title">Konfirmasi kehadiran</p>
+                    <p class="outcome-step-desc">Buka email ISTTS Anda untuk melihat link grup WhatsApp</p>
+                  </div>
+                </div>
+
+                <div class="outcome-step-item">
+                  <div class="outcome-step-icon outcome-step-icon-success">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <div class="outcome-step-text">
+                    <p class="outcome-step-title">Join grup IEEE 26/27</p>
+                    <p class="outcome-step-desc">Klik tautan tersebut untuk bergabung dengan grup resmi angkatan</p>
+                  </div>
+                </div>
+
+                <div class="outcome-step-item">
+                  <div class="outcome-step-icon outcome-step-icon-success">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+                  </div>
+                  <div class="outcome-step-text">
+                    <p class="outcome-step-title">Kickoff &amp; onboarding</p>
+                    <p class="outcome-step-desc">Kenalan dengan tim, dan persiapkan diri untuk misi pertamamu</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- tidak lolos -->
+            <div class="result-state result-outcome result-outcome-gagal" id="resultStateGagal" hidden>
+
+              <div class="outcome-topbar">
+                <!-- <span class="outcome-topbar-label">Hasil Seleksi</span> -->
+                <span class="outcome-badge outcome-badge-fail">
+                  <span class="outcome-badge-dot"></span>
+                  <span>BELUM LOLOS</span>
+                </span>
+              </div>
+
+              <div class="outcome-icon-circle outcome-icon-circle-fail">
+                <img class="outcome-icon-circle-img" src="assets/hati.svg" alt="Ikon hati patah">
+              </div>
+
+              <h3 class="outcome-heading outcome-heading-center">Terima kasih sudah berjuang</h3>
+              <p class="outcome-description outcome-description-center">
+                Kali ini hasilnya belum sesuai harapan, tapi keberanianmu untuk mencoba tetap sesuatu yang keren.
+              </p>
+
+              <hr class="outcome-divider">
+
+              <dl class="outcome-info-list">
+                <div class="outcome-info-row">
+                  <dt>NRP</dt>
+                  <dd id="gagalNrp">-</dd>
+                </div>
+                <div class="outcome-info-row">
+                  <dt>Pilihan divisi</dt>
+                  <dd id="gagalDivisi">-</dd>
+                </div>
+              </dl>
+              
+              <hr class="outcome-divider">
+
+              <p class="outcome-closing-note">
+                Keberanianmu untuk mencoba sudah jadi langkah besar<br>
+                Kami tunggu ceritamu di kesempatan lain 👋
+              </p>
+
+            </div>
+
+            <!-- tidak datang -->
+            <div class="result-state result-outcome result-outcome-absen" id="resultStateAbsen" hidden>
+
+              <div class="outcome-topbar">
+                <span class="outcome-badge outcome-badge-absen">
+                  <span class="outcome-badge-dot outcome-badge-dot-absen"></span>
+                  <span>TIDAK HADIR</span>
+                </span>
+              </div>
+
+              <div class="outcome-icon-circle outcome-icon-circle-absen">
+                <img class="outcome-icon-circle-img" src="assets/kalender.png" alt="Ikon kalender silang">
+              </div>
+
+              <h3 class="outcome-heading outcome-heading-center">Kamu tercatat tidak hadir</h3>
+              <p class="outcome-description outcome-description-center">
+                Peserta tidak hadir saat jadwal interview.
+              </p>
+
+              <hr class="outcome-divider">
+
+              <dl class="outcome-info-list">
+                <div class="outcome-info-row">
+                  <dt>NRP</dt>
+                  <dd id="absenNrp">-</dd>
+                </div>
+              </dl>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- footer -->
+  <footer class="site-footer" id="siteFooter">
+    <div class="footer-inner">
+      <p class="footer-copy" id="footerCopy">&copy; 2026 IEEE Student Branch ISTTS</p>
+      <p class="footer-contact" id="footerContact">
+        Kontak: <a href="mailto:ieeesb.istts@gmail.com">ieeesb.istts@gmail.com</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
